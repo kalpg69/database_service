@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package customerpb;
+
+option go_package = "api/v1/customerpb;customerpb";
+
+message Customer {
+    int32 id = 1;
+    string customer_code = 2;
+    string customer_name = 3;
+    string customer_address = 4;
+    string customer_email = 5;
+    string customer_phone = 6;
+}
+
+message CreateCustomerRequest {
+    Customer customer = 1;
+}
+
+message CreateCustomerResponse {
+    Customer customer = 1;
+}
+
+service CustomerService {
+    rpc CreateCustomer (CreateCustomerRequest) returns (CreateCustomerResponse);
+}
+
+
+

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package carrierpb;
+
+option go_package = "api/v1/carrierpb;carrierpb";
+
+message Carrier {
+    int32 id = 1;
+    string carrier_code = 2;
+    string carrier_name = 3;
+    string carrier_address = 4;
+    string carrier_email = 5;
+    string carrier_phone = 6;
+}
+
+message CreateCarrierRequest {
+    Carrier carrier = 1;
+}
+
+message CreateCarrierResponse {
+    Carrier carrier = 1;
+}
+
+service CarrierService {
+    rpc CreateCarrier (CreateCarrierRequest) returns (CreateCarrierResponse);
+}
