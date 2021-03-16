@@ -1,25 +1,27 @@
-package carriersrv
+package carrier
 
 import (
 	"context"
 	"database/sql"
 	"log"
 
-	carrierpb "github.com/kalpg69/database_service/api/v1/carrierpb"
+	"github.com/kalpg69/database_service/api/v1/carrierpb"
+	"github.com/kalpg69/database_service/api/v1/databasepb"
 )
 
 const (
 	queryCreateCarrier = "CreateCarrier" //Name of Stored Procedure
 )
 
-func NewCarrierServer(db *sql.DB) carrierpb.CarrierServiceServer {
+func NewCarrierServer(db *sql.DB) databasepb.CarrierServiceServer {
+	log.Println("starting carrier server")
 	return &carrierServer{
 		db: db,
 	}
 }
 
 type carrierServer struct {
-	carrierpb.UnimplementedCarrierServiceServer
+	databasepb.UnimplementedCarrierServiceServer
 	db *sql.DB
 }
 

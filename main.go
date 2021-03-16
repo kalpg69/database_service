@@ -5,10 +5,9 @@ import (
 	"log"
 	"net"
 
-	"github.com/kalpg69/database_service/api/v1/carrierpb"
-	"github.com/kalpg69/database_service/api/v1/customerpb"
-	"github.com/kalpg69/database_service/server/carriersrv"
-	"github.com/kalpg69/database_service/server/customersrv"
+	"github.com/kalpg69/database_service/api/v1/databasepb"
+	"github.com/kalpg69/database_service/service/carrier"
+	"github.com/kalpg69/database_service/service/customer"
 	"github.com/kalpg69/database_service/sqlclient"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -29,8 +28,10 @@ func main() {
 	defer lis.Close()
 
 	grpcServer := grpc.NewServer()
-	customerpb.RegisterCustomerServiceServer(grpcServer, customersrv.NewCustomerServer(db))
-	carrierpb.RegisterCarrierServiceServer(grpcServer, carriersrv.NewCarrierServer(db))
+
+	databasepb.RegisterCarrierServiceServer(grpcServer, carrier.NewCarrierServer(db))
+
+	databasepb.RegisterCustomerServiceServer(grpcServer, customer.NewCustomerServer(db))
 
 	reflection.Register(grpcServer)
 

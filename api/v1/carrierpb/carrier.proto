@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package carrierpb;
 
-option go_package = "api/v1/carrierpb;carrierpb";
+option go_package = "github.com/kalpg69/database_service/api/v1/carrierpb;carrierpb";
 
 message Carrier {
     int32 id = 1;
@@ -21,6 +21,4 @@ message CreateCarrierResponse {
     Carrier carrier = 1;
 }
 
-service CarrierService {
-    rpc CreateCarrier (CreateCarrierRequest) returns (CreateCarrierResponse);
-}
+

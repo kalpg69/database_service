@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "api/v1/carrierpb/carrier.proto";
+import  "api/v1/customerpb/customer.proto";
+
+package databasepb;
+
+option go_package = "github.com/kalpg69/database_service/api/v1/databasepb;databasepb";
+
+
+
+
+service CarrierService {
+    rpc CreateCarrier (carrierpb.CreateCarrierRequest) returns (carrierpb.CreateCarrierResponse);
+}
+
+
+
+
+service CustomerService {
+    rpc CreateCustomer (customerpb.CreateCustomerRequest) returns (customerpb.CreateCustomerResponse);
+}

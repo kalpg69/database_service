@@ -1,25 +1,27 @@
-package customersrv
+package customer
 
 import (
 	"context"
 	"database/sql"
 	"log"
 
-	customerpb "github.com/kalpg69/database_service/api/v1/customerpb"
+	"github.com/kalpg69/database_service/api/v1/customerpb"
+	"github.com/kalpg69/database_service/api/v1/databasepb"
 )
 
 const (
 	queryCreateCustomer = "CreateCustomer" //Name of Stored Procedure
 )
 
-func NewCustomerServer(db *sql.DB) customerpb.CustomerServiceServer {
+func NewCustomerServer(db *sql.DB) databasepb.CustomerServiceServer {
+	log.Println("starting customer server")
 	return &customerServer{
 		db: db,
 	}
 }
 
 type customerServer struct {
-	customerpb.UnimplementedCustomerServiceServer
+	databasepb.UnimplementedCustomerServiceServer
 	db *sql.DB
 }
 
